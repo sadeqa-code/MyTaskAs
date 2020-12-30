@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_list/Screens/task_list.dart';
+import 'package:todo_list/app_provider.dart';
 
 import 'Models/Task.dart';
 import 'Screens/task_detail.dart';
@@ -11,13 +13,18 @@ void main() {
 class TaskApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // Hide the debug banner
-      debugShowCheckedModeBanner: false,
-      title: 'My Tasks',
-      theme: ThemeData.light(),
-      home: TabsScreen(),
-    );
+    return ChangeNotifierProvider(
+        create: (BuildContext context) {
+          return AppProvider();
+        },
+        child: MaterialApp(
+          // Hide the debug banner
+
+          title: 'My Tasks',
+          theme: ThemeData.light(),
+          debugShowCheckedModeBanner: false,
+          home: TabsScreen(),
+        ));
   }
 }
 
